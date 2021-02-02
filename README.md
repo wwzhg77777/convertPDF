@@ -79,6 +79,3 @@ app_id |varchar | 30 | 否 | 否 | 否 |  |
 type | varchar | 30 | 否 | 否 | 否 |  | 
 unix_time |int | 11 | 否 | 否 | 否 |  | 
 
-## 完整代码已在GitHub上开源
-`GitHub:`[https://github.com/wwzhg77777/convertPDF](https://github.com/wwzhg77777/convertPDF)
-
