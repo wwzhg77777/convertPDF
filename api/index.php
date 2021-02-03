@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin:*');
-header('Access-Control-Allow-Methods:GET,POST');
-header('Access-Control-Allow-Headers:x-requested-with,Content-Type');
+header('Access-Control-Allow-Methods:GET,POST,OPTIONS');
+header('Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type');
 
 if (isset($_GET['a']) && isset($_GET['t'])) {
     $app_id = $_GET['a'];
