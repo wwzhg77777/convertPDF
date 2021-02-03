@@ -17,7 +17,7 @@
 ```
 convertPDF
  |——— api
-      |——— index.php
+      |——— index.php    # 后端php代码
  |
  |——— src
       |——— app.ini      # 存放Ocr接口的用户参数和后端的api接口地址
