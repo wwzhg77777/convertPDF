@@ -62,8 +62,8 @@ secret_key=....
 
 ### MySQL数据表结构
 &emsp;后端2张表：
-`index:`记录了百度AI用户的Ocr接口免费次数
-`record:`记录用户的上传文件
+`index`记录了百度AI用户的Ocr接口免费次数
+`record`记录用户的上传文件
 
 `pdfrecord`数据库结构如下:
 
