@@ -3,45 +3,43 @@
 <br />
 <br />
 
-### 该文章的完整介绍来自于:[https://blog.csdn.net/m0_54768192/article/details/113488889](https://blog.csdn.net/m0_54768192/article/details/113488889)
+### 该文章的完整介绍来自于:[[个人笔记] python+php 制作C/S架构的PDF文字识别小工具](https://blog.csdn.net/m0_54768192/article/details/113488889)
 
-### 开发环境
+### 应用环境
+&emsp;**Windows系统下 `x64`和`x86`平台**
 
-**&emsp;操作系统： Windows 10 LTSC (2018版)**
-
-**&emsp;Python版本： 3.8.6 &emsp;(Python3及以上版本均可)**
-
-**&emsp;程序应用环境： Windows系统下 `x64`和`x86`平台 &emsp;(分别用pyinstaller打包，详情可看[Python x64和x86平台下pyinstaller打包过程](https://blog.csdn.net/m0_54768192/article/details/113006948))**
-
-**&emsp;Python第三方包： `tkinter, pyinstaller, baidu-aip, pdfminer, pdfminer3k, fitz, requests `**
-<br />
 <br />
 
-## 目录结构
+### 目录结构
+
 `源代码目录结构：`
+
 ```
-—— src
- |——— myConvert.py	# PDF转图片，PDF转文字的模块
- |——— pdf_Ocr.py	# PDF转图片文字识别模块
- |——— tkPDF.py		# 主程序入口文件
+convertPDF
+ |——— api
+      |——— index.php
  |
+ |——— src
+      |——— app.ini      # 存放Ocr接口的用户参数和后端的api接口地址
+      |——— myConvert.py # PDF转图片，PDF转文字的模块
+      |——— pdf_Ocr.py   # PDF转图片文字识别模块
+      |——— tkPDF.py     # 主程序入口文件
 ```
 
-`执行文件exe 目录结构：`
+`执行文件的目录结构：`
+
 ```
 —— src  (x64 or x86)
- |——— app.ini		# 存放Ocr接口的用户参数和后端的api接口地址
- |——— tkPDF.exe		# 主程序入口
+ |——— app.ini   # 存放Ocr接口的用户参数和后端的api接口地址
+ |——— tkPDF.exe # 主程序入口
  |
 ```
 
-### 读取本地配置
-&emsp;该小工具采用读取本地配置文件的方式，可以灵活地更换`api`接口。主要有2个列表：`SERVER`和`APP_INFO`
-&emsp;读取的路径在`tkPDF.py`里已经写明，是读取主程序所在目录下的`app.ini`文件。
-```
-注：exe主程序可以添加快捷方式，弄到到别的路径，不影响app.ini文件的读取
-```
+## 主程序生成步骤
+&emsp;src目录下执行`pyinstaller -F -w .\tkPDF.py`生成主程序tkPDF.exe
+&emsp;复制src目录下的`app.ini`到主程序目录。app.ini内容需要自行补充完整。[百度AI申请地址入口](https://ai.baidu.com/)
 
+`app.ini`
 ```bash
 [SERVER]
 url=....
@@ -52,30 +50,39 @@ api_key=....
 secret_key=....
 ```
 
+<br />
 
-### MySQL
-&emsp;后端只用了2张表：
-&emsp;`index:`记录了百度AI用户的Ocr接口免费次数
-&emsp;`record:`记录用户的上传文件
+### 开发环境
+&emsp;**Python版本： 3.8.6 &emsp;(Python3及以上版本均可)**
 
-数据表结构如下:
+&emsp;**Python第三方包： `tkinter, pyinstaller, baidu-aip, pdfminer, pdfminer3k, fitz, requests `**
+<br />
+<br />
 
-`index:`
+
+### MySQL数据表结构
+&emsp;后端2张表：
+`index:`记录了百度AI用户的Ocr接口免费次数
+`record:`记录用户的上传文件
+
+`pdfrecord`数据库结构如下:
+
+`pdfrecord.index`
 列名     |   数据类型   |   长度   |   主键   |   外键   |   允许空   |   默认值   |   说明
 -------- | -----  | ---- | ---- | ---- | ---- | ----- | ---- |
-id | int | 4 |是 | 否 |否 |  |
-app_id  | varchar | 30 | 否 | 否 | 否 |  |
-type  | varchar | 30 | 否 | 否 | 否 |  |
-count |int | 8 | 否 | 否 | 否 |  |
-unix_time |int | 11 | 否 | 否 | 否 |  | 
+id | int | 4 |是 | 否 |否 |  | 唯一标识
+app_id  | varchar | 30 | 否 | 否 | 否 |  | Ocr的APP_ID
+type  | varchar | 30 | 否 | 否 | 否 |  | Ocr的类型
+count |int | 8 | 否 | 否 | 否 |  | Ocr的次数
+unix_time |int | 11 | 否 | 否 | 否 |  | 10位UNIX时间戳
 
-`record:`
+`pdfrecord.record`
 列名     |   数据类型   |   长度   |   主键   |   外键   |   允许空   |   默认值   |   说明
 -------- | -----  | ---- | ---- | ---- | ---- | ----- | ---- |
-id | int | 4 |是 | 否 |否 |  |
-filename  | varchar | 50 | 否 | 否 | 否 |  |
-filesize  | varchar | 20 | 否 | 否 | 否 |  |
-app_id |varchar | 30 | 否 | 否 | 否 |  |
-type | varchar | 30 | 否 | 否 | 否 |  | 
-unix_time |int | 11 | 否 | 否 | 否 |  | 
+id | int | 4 |是 | 否 |否 |  | 唯一标识
+filename  | varchar | 50 | 否 | 否 | 否 |  | 文件名称
+filesize  | varchar | 20 | 否 | 否 | 否 |  | 文件大小(Mb)
+app_id |varchar | 30 | 否 | 否 | 否 |  | Ocr的APP_ID
+type | varchar | 30 | 否 | 否 | 否 |  | Ocr的次数
+unix_time |int | 11 | 否 | 否 | 否 |  | 10位UNIX时间戳
 
