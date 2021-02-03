@@ -83,6 +83,6 @@ id | int | 4 |是 | 否 |否 |  | 唯一标识
 filename  | varchar | 50 | 否 | 否 | 否 |  | 文件名称
 filesize  | varchar | 20 | 否 | 否 | 否 |  | 文件大小(Mb)
 app_id |varchar | 30 | 否 | 否 | 否 |  | Ocr的APP_ID
-type | varchar | 30 | 否 | 否 | 否 |  | Ocr的次数
+type | varchar | 30 | 否 | 否 | 否 |  | Ocr的类型
 unix_time |int | 11 | 否 | 否 | 否 |  | 10位UNIX时间戳
 
