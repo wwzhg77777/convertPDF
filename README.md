@@ -3,7 +3,7 @@
 <br />
 <br />
 
-### 该文章的完整介绍来自于:[[个人笔记] python+php 制作C/S架构的PDF文字识别小工具](https://blog.csdn.net/m0_54768192/article/details/113488889)
+### 完整介绍来自[[个人笔记] python+php 制作C/S架构的PDF文字识别小工具](https://blog.csdn.net/m0_54768192/article/details/113488889)
 
 ### 应用环境
 &emsp;**Windows系统下 `x64`和`x86`平台**
